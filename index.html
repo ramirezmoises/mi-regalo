@@ -81,7 +81,6 @@
             margin-bottom: 20px;
         }
 
-        /* Estilo para el reproductor de Spotify */
         #spotify-container {
             display: none;
             margin-top: 20px;
@@ -105,7 +104,7 @@
         <div id="typewriter"></div>
 
         <div id="spotify-container">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/intl-es/track/2MnKininlD8bY9ggRNSJ37?si=8356b8e8ceea45f5" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/303vO0S1SUnuD961mP4v4U?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
     </div>
 
@@ -152,18 +151,12 @@ Te amo mucho mi princesa.`;
         }
 
         function startExperience() {
-            // Ocultar botón
             document.getElementById('startBtn').style.display = 'none';
-            
-            // Mostrar texto y Spotify
             document.getElementById('typewriter').style.display = 'block';
             document.getElementById('spotify-container').style.display = 'block';
-            
-            // Iniciar efectos
             setInterval(createParticle, 400);
             typeWriter();
         }
     </script>
 </body>
 </html>
-
