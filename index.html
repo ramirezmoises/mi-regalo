@@ -38,12 +38,12 @@
         }
 
         .photo-frame {
-            width: 220px;
-            height: 220px;
+            width: 200px;
+            height: 200px;
             border: 8px solid white;
             border-radius: 50%;
             box-shadow: 0 10px 30px rgba(201, 24, 74, 0.3);
-            margin: 0 auto 30px auto;
+            margin: 0 auto 20px auto;
             overflow: hidden;
             background: #ffb3c1;
         }
@@ -78,12 +78,16 @@
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
+            margin-bottom: 20px;
         }
 
-        /* Hacemos el video "visible" pero muy pequeño al final de la página */
-        #video-container {
+        /* Estilo para el reproductor de Spotify */
+        #spotify-container {
+            display: none;
             margin-top: 20px;
-            opacity: 0.1; /* Casi invisible */
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -100,7 +104,9 @@
 
         <div id="typewriter"></div>
 
-        <div id="video-container"></div>
+        <div id="spotify-container">
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2C9C6G6XlF2m00NidH9I26?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
     </div>
 
     <script>
@@ -146,13 +152,14 @@ Te amo mucho mi princesa.`;
         }
 
         function startExperience() {
+            // Ocultar botón
             document.getElementById('startBtn').style.display = 'none';
+            
+            // Mostrar texto y Spotify
             document.getElementById('typewriter').style.display = 'block';
+            document.getElementById('spotify-container').style.display = 'block';
             
-            // MÉTODO DEFINITIVO: Inyectamos el video con controles de autoplay para móvil
-            const container = document.getElementById('video-container');
-            container.innerHTML = `<iframe width="200" height="150" src="https://www.youtube.com/embed/g2f_L_N0D8E?autoplay=1&mute=0&controls=0" frameborder="0" allow="autoplay; encrypted-media"></iframe>`;
-            
+            // Iniciar efectos
             setInterval(createParticle, 400);
             typeWriter();
         }
