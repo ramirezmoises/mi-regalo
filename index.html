@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Mi Princesa ❤️</title>
     <style>
-        /* Estilos Generales */
         body {
             margin: 0;
             padding: 0;
@@ -18,7 +17,6 @@
             color: #c9184a;
         }
 
-        /* Contenedor de la lluvia de amor */
         .particle {
             position: fixed;
             top: -10%;
@@ -28,9 +26,7 @@
         }
 
         @keyframes fall {
-            to {
-                transform: translateY(110vh) rotate(360deg);
-            }
+            to { transform: translateY(110vh) rotate(360deg); }
         }
 
         .container {
@@ -41,7 +37,6 @@
             z-index: 10;
         }
 
-        /* Marco de la foto circular */
         .photo-frame {
             width: 220px;
             height: 220px;
@@ -59,7 +54,6 @@
             object-fit: cover;
         }
 
-        /* Caja de texto con efecto máquina de escribir */
         #typewriter {
             font-size: 1.1rem;
             line-height: 1.8;
@@ -70,11 +64,10 @@
             border-radius: 25px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
             text-align: left;
-            white-space: pre-wrap; /* Mantiene los saltos de línea del poema */
-            display: none; /* Se muestra al iniciar */
+            white-space: pre-wrap;
+            display: none;
         }
 
-        /* Botón de inicio */
         #startBtn {
             background-color: #ff4d6d;
             color: white;
@@ -85,30 +78,12 @@
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
-            transition: all 0.3s ease;
-            margin-top: 20px;
         }
 
-        #startBtn:hover {
-            transform: scale(1.05);
-            background-color: #ff758f;
-        }
-
-        .music-info {
-            margin-top: 20px;
-            font-size: 0.8rem;
-            font-style: italic;
-            opacity: 0.7;
-            display: none;
-        }
-
-        /* Escondemos el iframe pero lo dejamos "activo" para el navegador */
+        /* Hacemos el video "visible" pero muy pequeño al final de la página */
         #video-container {
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-            position: absolute;
-            left: -9999px;
+            margin-top: 20px;
+            opacity: 0.1; /* Casi invisible */
         }
     </style>
 </head>
@@ -125,17 +100,10 @@
 
         <div id="typewriter"></div>
 
-        <div id="music-zone" class="music-info">
-            <p>🎵 Escuchando: Nuestro Sueño - Grupo Niche</p>
-        </div>
-    </div>
-
-    <div id="video-container">
-        <div id="player"></div>
+        <div id="video-container"></div>
     </div>
 
     <script>
-        // Tu mensaje exacto
         const text = `Eres un regalo...
 y por eso me da miedo perderte, porque llegaste sin esperarlo, y te quedaste en mi vida, como si hubieras estado siempre, sigo atónito pensando en qué le viste a este corazón especial, para querer quedarte a su lado, pero doy gracias al camino, que sin ser planeado, comenzamos a trazar...
 
@@ -158,16 +126,13 @@ Te amo mucho mi princesa.`;
         let i = 0;
         function typeWriter() {
             if (i < text.length) {
-                const char = text.charAt(i);
-                document.getElementById("typewriter").innerHTML += char;
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
                 i++;
                 setTimeout(typeWriter, 55);
-                // Auto-scroll para que vea el texto mientras crece
                 window.scrollTo(0, document.body.scrollHeight);
             }
         }
 
-        // Función para crear pétalos y corazones
         function createParticle() {
             const particles = ['❤️', '🌸', '✨', '💖', '🌹', '🌷'];
             const particle = document.createElement('div');
@@ -177,27 +142,18 @@ Te amo mucho mi princesa.`;
             particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
             particle.style.fontSize = Math.random() * 20 + 15 + 'px';
             document.body.appendChild(particle);
-
             setTimeout(() => { particle.remove(); }, 6000);
         }
 
-        // Función principal al hacer clic
         function startExperience() {
-            // 1. Ocultar el botón
             document.getElementById('startBtn').style.display = 'none';
-            
-            // 2. Mostrar la caja de texto y la info de música
             document.getElementById('typewriter').style.display = 'block';
-            document.getElementById('music-zone').style.display = 'block';
             
-            // 3. Cargar la música forzando el inicio
+            // MÉTODO DEFINITIVO: Inyectamos el video con controles de autoplay para móvil
             const container = document.getElementById('video-container');
-            container.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/g2f_L_N0D8E?autoplay=1&mute=0&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+            container.innerHTML = `<iframe width="200" height="150" src="https://www.youtube.com/embed/g2f_L_N0D8E?autoplay=1&mute=0&controls=0" frameborder="0" allow="autoplay; encrypted-media"></iframe>`;
             
-            // 4. Iniciar animaciones de pétalos
             setInterval(createParticle, 400);
-            
-            // 5. Iniciar efecto de escritura
             typeWriter();
         }
     </script>
