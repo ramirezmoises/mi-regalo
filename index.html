@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Mi Princesa ❤️</title>
     <style>
+        /* Estilos Base */
         body {
             margin: 0;
             padding: 0;
@@ -17,6 +18,7 @@
             color: #c9184a;
         }
 
+        /* Animación de Pétalos y Corazones */
         .particle {
             position: fixed;
             top: -10%;
@@ -37,6 +39,7 @@
             z-index: 10;
         }
 
+        /* Foto Circular */
         .photo-frame {
             width: 200px;
             height: 200px;
@@ -54,6 +57,7 @@
             object-fit: cover;
         }
 
+        /* Caja de Texto */
         #typewriter {
             font-size: 1.1rem;
             line-height: 1.8;
@@ -68,6 +72,7 @@
             display: none;
         }
 
+        /* Botón Principal */
         #startBtn {
             background-color: #ff4d6d;
             color: white;
@@ -78,15 +83,15 @@
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
-            margin-bottom: 20px;
+            transition: 0.3s;
         }
 
-        #spotify-container {
+        #startBtn:hover { transform: scale(1.05); }
+
+        /* Reproductor de Audio invisible */
+        #music-player {
             display: none;
             margin-top: 20px;
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
         }
     </style>
 </head>
@@ -103,9 +108,10 @@
 
         <div id="typewriter"></div>
 
-        <div id="spotify-container">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3D7K4Eav581isM7X2zFz5p?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
+        <audio id="audioElement">
+            <source src="cancion.mp3" type="audio/mpeg">
+            Tu navegador no soporta audio.
+        </audio>
     </div>
 
     <script>
@@ -151,13 +157,22 @@ Te amo mucho mi princesa.`;
         }
 
         function startExperience() {
+            // Ocultar botón
             document.getElementById('startBtn').style.display = 'none';
+            
+            // Mostrar texto
             document.getElementById('typewriter').style.display = 'block';
-            document.getElementById('spotify-container').style.display = 'block';
+            
+            // Reproducir música (cancion.mp3)
+            const audio = document.getElementById('audioElement');
+            audio.play().catch(error => {
+                console.log("Reproducción automática bloqueada, pero el usuario ya interactuó.");
+            });
+            
+            // Iniciar efectos de pétalos y escritura
             setInterval(createParticle, 400);
             typeWriter();
         }
     </script>
 </body>
 </html>
-
