@@ -17,6 +17,7 @@
             color: #c9184a;
         }
 
+        /* Fondo con mayor visibilidad */
         #bg-slideshow {
             position: fixed;
             top: 0;
@@ -26,7 +27,7 @@
             z-index: -1;
             background-size: cover;
             background-position: center;
-            filter: brightness(0.7) opacity(0.4); 
+            filter: brightness(0.85); /* Un poco más de brillo para las fotos */
             transition: background-image 2s ease-in-out;
             background-image: url('nuestra_foto.jpg');
         }
@@ -52,30 +53,37 @@
         }
 
         .photo-frame {
-            width: 180px;
-            height: 180px;
-            border: 6px solid white;
+            width: 160px;
+            height: 160px;
+            border: 5px solid rgba(255, 255, 255, 0.8);
             border-radius: 50%;
-            box-shadow: 0 10px 30px rgba(201, 24, 74, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             margin: 0 auto 20px auto;
             overflow: hidden;
-            background: #ffb3c1;
         }
 
         .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
+        /* EFECTO CRISTAL TRANSPARENTE */
         #typewriter {
             font-size: 1.1rem;
-            line-height: 1.8;
+            line-height: 1.7;
             min-height: 250px;
             margin: 20px 0;
-            background: rgba(255, 255, 255, 0.9); 
+            /* Transparencia alta y desenfoque de fondo */
+            background: rgba(255, 255, 255, 0.35); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            
             padding: 25px;
-            border-radius: 25px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             text-align: left;
             white-space: pre-wrap;
             display: none;
+            /* Sombra ligera al texto para que no se pierda con el fondo */
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
         }
 
         #startBtn {
@@ -100,7 +108,7 @@
             <img src="nuestra_foto.jpg" alt="Nosotros">
         </div>
 
-        <h1>¡Feliz San Valentín! ❤️</h1>
+        <h1 style="text-shadow: 2px 2px 4px white;">¡Feliz San Valentín! ❤️</h1>
 
         <button id="startBtn" onclick="startExperience()">Haz clic aquí, mi amor 🌹</button>
 
@@ -146,7 +154,6 @@ Gracias por elegirme, por abrazar mis miedos y convertirlos en valentía. No sé
 
 Te amo mucho mi princesa.`;
 
-        // LISTA LIMPIA Y CORREGIDA (Sin espacios extra)
         const images = [
             'nuestra_foto.jpg',
             'Foto1.jpg',
@@ -164,7 +171,6 @@ Te amo mucho mi princesa.`;
         let currentImageIndex = 0;
         function changeBackground() {
             const bg = document.getElementById('bg-slideshow');
-            // Cambiamos a la siguiente imagen de la lista
             bg.style.backgroundImage = "url('" + images[currentImageIndex] + "')";
             currentImageIndex = (currentImageIndex + 1) % images.length;
         }
@@ -197,7 +203,7 @@ Te amo mucho mi princesa.`;
             const audio = document.getElementById('audioElement');
             audio.play();
             
-            // Iniciar el cambio de fotos cada 4 segundos
+            changeBackground();
             setInterval(changeBackground, 4000);
             
             setInterval(createParticle, 400);
