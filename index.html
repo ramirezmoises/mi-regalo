@@ -17,7 +17,6 @@
             color: #c9184a;
         }
 
-        /* Fondo con imágenes que cambian */
         #bg-slideshow {
             position: fixed;
             top: 0;
@@ -27,8 +26,9 @@
             z-index: -1;
             background-size: cover;
             background-position: center;
-            filter: brightness(0.8) opacity(0.3); /* Opacidad baja para que se lea el texto */
+            filter: brightness(0.7) opacity(0.4); 
             transition: background-image 2s ease-in-out;
+            background-image: url('nuestra_foto.jpg');
         }
 
         .particle {
@@ -69,10 +69,10 @@
             line-height: 1.8;
             min-height: 250px;
             margin: 20px 0;
-            background: rgba(255, 255, 255, 0.85); /* Fondo blanco semi-transparente */
+            background: rgba(255, 255, 255, 0.9); 
             padding: 25px;
             border-radius: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
             text-align: left;
             white-space: pre-wrap;
             display: none;
@@ -112,14 +112,14 @@
     </div>
 
     <script>
-        const text =  `¿Cómo es que te amo así, con todo el pensamiento?
+        const text = `¿Cómo es que te amo así, con todo el pensamiento?
 ¿Cómo lograste entrar así sin preguntar robándote el momento?
 ¿Cómo es que te amo así, sin tanto sufrimiento?
             
 Y es que te he dado todo, y nada es suficiente
 No porque me lo pides, sino porque faltan frenos al quererte
             
-        Eres un regalo...
+Eres un regalo...
 y por eso me da miedo perderte, porque llegaste sin esperarlo, y te quedaste en mi vida, como si hubieras estado siempre, sigo atónito pensando en qué le viste a este corazón especial, para querer quedarte a su lado, pero doy gracias al camino, que sin ser planeado, comenzamos a trazar...
 
 Eres vida...
@@ -137,34 +137,35 @@ Eres felicidad...
 Eres calma en la tempestad,
 Y el refugio donde mi alma descansa.
 
-Tenerte a mi lado es el teoso más grande que la vida me ha dado.
+Tenerte a mi lado es el tesoro más grande que la vida me ha dado.
 
-Se que hemos hablado de esto y que quizas no siempre estemos de acuerdo en todo, pero quiero que sepas que respeto tu esencia y tu libertad. Este regalo es mi forma de decir que, auqnue tengamos nuestras diferencias, confío en nosotros y en la persona maravillosa que eres. Te quiero libre, te quiero auténtica y sobre todo.
+Sé que hemos hablado de esto y que quizás no siempre estemos de acuerdo en todo, pero quiero que sepas que respeto tu esencia y tu libertad. Este regalo es mi forma de decir que, aunque tengamos nuestras diferencias, confío en nosotros y en la persona maravillosa que eres. Te quiero libre, te quiero auténtica y sobre todo.
 Te quiero Conmigo.
 
-Gracias por elegirme, por abrazar mis miedos y convertirlos en valentía. No se que nos depara el destino, pero mientras sea a tu lado, se que cualquier lugar es correcto. Cada aventura será especial. Eres y serás siempre, mi lugar favorito en el mundo.
+Gracias por elegirme, por abrazar mis miedos y convertirlos en valentía. No sé qué nos depara el destino, pero mientras sea a tu lado, sé que cualquier lugar es correcto. Cada aventura será especial. Eres y serás siempre, mi lugar favorito en el mundo.
 
 Te amo mucho mi princesa.`;
 
-        // Lista de tus fotos de fondo
+        // LISTA LIMPIA Y CORREGIDA (Sin espacios extra)
         const images = [
-        'nuestra_foto.jpg',
-        'Foto1.jpg',
-        'Foto2.jpg',
-	    'Foto3.jpg',
- 	    'Foto4.jpg',
-        'Foto5.jpg',
-	    'Foto6.jpg',
- 	    'Foto7.jpg',
-        'Foto8.jpg',
-	    'Foto9.jpg',
-        'Foto10.jpg'
+            'nuestra_foto.jpg',
+            'Foto1.jpg',
+            'Foto2.jpg',
+            'Foto3.jpg',
+            'Foto4.jpg',
+            'Foto5.jpg',
+            'Foto6.jpg',
+            'Foto7.jpg',
+            'Foto8.jpg',
+            'Foto9.jpg',
+            'Foto10.jpg'
         ];
         
         let currentImageIndex = 0;
         function changeBackground() {
             const bg = document.getElementById('bg-slideshow');
-            bg.style.backgroundImage = `url(${images[currentImageIndex]})`;
+            // Cambiamos a la siguiente imagen de la lista
+            bg.style.backgroundImage = "url('" + images[currentImageIndex] + "')";
             currentImageIndex = (currentImageIndex + 1) % images.length;
         }
 
@@ -196,8 +197,7 @@ Te amo mucho mi princesa.`;
             const audio = document.getElementById('audioElement');
             audio.play();
             
-            // Iniciar carrusel de fotos cada 4 segundos
-            changeBackground();
+            // Iniciar el cambio de fotos cada 4 segundos
             setInterval(changeBackground, 4000);
             
             setInterval(createParticle, 400);
@@ -206,6 +206,3 @@ Te amo mucho mi princesa.`;
     </script>
 </body>
 </html>
-
-
-
