@@ -8,13 +8,13 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #000; /* Fondo negro de base por si carga lento */
+            background-color: #000;
             font-family: 'Georgia', serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
-            color: white; /* Letras blancas para que resalten */
+            color: white;
         }
 
         #bg-slideshow {
@@ -26,7 +26,7 @@
             z-index: -1;
             background-size: cover;
             background-position: center;
-            filter: brightness(0.6); /* Oscurecemos un poco la foto para que la letra blanca brille */
+            filter: brightness(0.6); 
             transition: background-image 2s ease-in-out;
             background-image: url('nuestra_foto.jpg');
         }
@@ -58,12 +58,11 @@
             border-radius: 50%;
             margin: 0 auto 20px auto;
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
         .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* TEXTO SIN RECUADRO */
+        /* AQUÍ ESTÁ EL CAMBIO: SIN RECUADRO BLANCO */
         #typewriter {
             font-size: 1.2rem;
             line-height: 1.6;
@@ -71,13 +70,19 @@
             text-align: left;
             white-space: pre-wrap;
             display: none;
-            /* Sombra negra alrededor de las letras blancas para legibilidad extrema */
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9), 
+            
+            /* Quitamos fondo, bordes y sombras de caja */
+            background: none !important; 
+            border: none !important;
+            box-shadow: none !important;
+            padding: 10px;
+
+            /* Sombra a las letras para que se lean sobre la foto */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1), 
                          -1px -1px 0px rgba(0,0,0,1),  
                          1px -1px 0px rgba(0,0,0,1),
                          -1px 1px 0px rgba(0,0,0,1),
                          1px 1px 0px rgba(0,0,0,1);
-            font-weight: 500;
         }
 
         #startBtn {
@@ -88,7 +93,7 @@
             border-radius: 50px;
             font-size: 1.2rem;
             font-weight: bold;
-            box-shadow: 0 5px 20px rgba(255, 77, 109, 0.6);
+            cursor: pointer;
         }
     </style>
 </head>
@@ -186,7 +191,7 @@ Te amo mucho mi princesa.`;
             audio.play();
             
             changeBackground();
-            setInterval(changeBackground, 4000);
+            setInterval(changeBackground, 4500);
             setInterval(createParticle, 400);
             typeWriter();
         }
