@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Mi Princesa ❤️</title>
     <style>
-        /* Estilos Base */
         body {
             margin: 0;
             padding: 0;
@@ -18,7 +17,20 @@
             color: #c9184a;
         }
 
-        /* Animación de Pétalos y Corazones */
+        /* Fondo con imágenes que cambian */
+        #bg-slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.8) opacity(0.3); /* Opacidad baja para que se lea el texto */
+            transition: background-image 2s ease-in-out;
+        }
+
         .particle {
             position: fixed;
             top: -10%;
@@ -39,11 +51,10 @@
             z-index: 10;
         }
 
-        /* Foto Circular */
         .photo-frame {
-            width: 200px;
-            height: 200px;
-            border: 8px solid white;
+            width: 180px;
+            height: 180px;
+            border: 6px solid white;
             border-radius: 50%;
             box-shadow: 0 10px 30px rgba(201, 24, 74, 0.3);
             margin: 0 auto 20px auto;
@@ -51,28 +62,22 @@
             background: #ffb3c1;
         }
 
-        .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Caja de Texto */
         #typewriter {
             font-size: 1.1rem;
             line-height: 1.8;
             min-height: 250px;
             margin: 20px 0;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.85); /* Fondo blanco semi-transparente */
             padding: 25px;
             border-radius: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             text-align: left;
             white-space: pre-wrap;
             display: none;
         }
 
-        /* Botón Principal */
         #startBtn {
             background-color: #ff4d6d;
             color: white;
@@ -83,19 +88,12 @@
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
-            transition: 0.3s;
-        }
-
-        #startBtn:hover { transform: scale(1.05); }
-
-        /* Reproductor de Audio invisible */
-        #music-player {
-            display: none;
-            margin-top: 20px;
         }
     </style>
 </head>
 <body>
+
+    <div id="bg-slideshow"></div>
 
     <div class="container">
         <div class="photo-frame">
@@ -110,7 +108,6 @@
 
         <audio id="audioElement">
             <source src="cancion.mp3" type="audio/mpeg">
-            Tu navegador no soporta audio.
         </audio>
     </div>
 
@@ -148,7 +145,29 @@ Te quiero Conmigo.
 Gracias por elegirme, por abrazar mis miedos y convertirlos en valentía. No se que nos depara el destino, pero mientras sea a tu lado, se que cualquier lugar es correcto. Cada aventura será especial. Eres y serás siempre, mi lugar favorito en el mundo.
 
 Te amo mucho mi princesa.`;
+
+        // Lista de tus fotos de fondo
+        const images = [
+            'nuestra_foto.jpg',
+            'foto1.jpg',
+            'foto2.jpg',
+	    'foto3.jpg',
+ 	    'foto4.jpg',
+            'foto5.jpg',
+	    'foto6.jpg',
+ 	    'foto7.jpg',
+            'foto8.jpg',
+	    'foto9.jpg',
+            'foto10.jpg'
+        ];
         
+        let currentImageIndex = 0;
+        function changeBackground() {
+            const bg = document.getElementById('bg-slideshow');
+            bg.style.backgroundImage = `url(${images[currentImageIndex]})`;
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+        }
+
         let i = 0;
         function typeWriter() {
             if (i < text.length) {
@@ -160,31 +179,27 @@ Te amo mucho mi princesa.`;
         }
 
         function createParticle() {
-            const particles = ['❤️', '🌸', '✨', '💖', '🌹', '🌷'];
+            const particles = ['❤️', '🌸', '✨', '💖', '🌹'];
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.innerHTML = particles[Math.floor(Math.random() * particles.length)];
             particle.style.left = Math.random() * 100 + 'vw';
             particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            particle.style.fontSize = Math.random() * 20 + 15 + 'px';
             document.body.appendChild(particle);
             setTimeout(() => { particle.remove(); }, 6000);
         }
 
         function startExperience() {
-            // Ocultar botón
             document.getElementById('startBtn').style.display = 'none';
-            
-            // Mostrar texto
             document.getElementById('typewriter').style.display = 'block';
             
-            // Reproducir música (cancion.mp3)
             const audio = document.getElementById('audioElement');
-            audio.play().catch(error => {
-                console.log("Reproducción automática bloqueada, pero el usuario ya interactuó.");
-            });
+            audio.play();
             
-            // Iniciar efectos de pétalos y escritura
+            // Iniciar carrusel de fotos cada 4 segundos
+            changeBackground();
+            setInterval(changeBackground, 4000);
+            
             setInterval(createParticle, 400);
             typeWriter();
         }
