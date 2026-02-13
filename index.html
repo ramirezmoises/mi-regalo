@@ -8,16 +8,15 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #fff0f3;
+            background-color: #000; /* Fondo negro de base por si carga lento */
             font-family: 'Georgia', serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
-            color: #c9184a;
+            color: white; /* Letras blancas para que resalten */
         }
 
-        /* Fondo con mayor visibilidad */
         #bg-slideshow {
             position: fixed;
             top: 0;
@@ -27,7 +26,7 @@
             z-index: -1;
             background-size: cover;
             background-position: center;
-            filter: brightness(0.85); /* Un poco más de brillo para las fotos */
+            filter: brightness(0.6); /* Oscurecemos un poco la foto para que la letra blanca brille */
             transition: background-image 2s ease-in-out;
             background-image: url('nuestra_foto.jpg');
         }
@@ -45,45 +44,40 @@
         }
 
         .container {
-            max-width: 90%;
-            width: 450px;
+            max-width: 85%;
+            width: 400px;
             text-align: center;
-            padding: 40px 20px;
+            padding: 40px 10px;
             z-index: 10;
         }
 
         .photo-frame {
-            width: 160px;
-            height: 160px;
-            border: 5px solid rgba(255, 255, 255, 0.8);
+            width: 150px;
+            height: 150px;
+            border: 4px solid white;
             border-radius: 50%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             margin: 0 auto 20px auto;
             overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
         .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* EFECTO CRISTAL TRANSPARENTE */
+        /* TEXTO SIN RECUADRO */
         #typewriter {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            min-height: 250px;
+            font-size: 1.2rem;
+            line-height: 1.6;
             margin: 20px 0;
-            /* Transparencia alta y desenfoque de fondo */
-            background: rgba(255, 255, 255, 0.35); 
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            
-            padding: 25px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             text-align: left;
             white-space: pre-wrap;
             display: none;
-            /* Sombra ligera al texto para que no se pierda con el fondo */
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+            /* Sombra negra alrededor de las letras blancas para legibilidad extrema */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9), 
+                         -1px -1px 0px rgba(0,0,0,1),  
+                         1px -1px 0px rgba(0,0,0,1),
+                         -1px 1px 0px rgba(0,0,0,1),
+                         1px 1px 0px rgba(0,0,0,1);
+            font-weight: 500;
         }
 
         #startBtn {
@@ -94,8 +88,7 @@
             border-radius: 50px;
             font-size: 1.2rem;
             font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
+            box-shadow: 0 5px 20px rgba(255, 77, 109, 0.6);
         }
     </style>
 </head>
@@ -108,7 +101,7 @@
             <img src="nuestra_foto.jpg" alt="Nosotros">
         </div>
 
-        <h1 style="text-shadow: 2px 2px 4px white;">¡Feliz San Valentín! ❤️</h1>
+        <h1 style="text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">¡Feliz San Valentín! ❤️</h1>
 
         <button id="startBtn" onclick="startExperience()">Haz clic aquí, mi amor 🌹</button>
 
@@ -128,17 +121,15 @@ Y es que te he dado todo, y nada es suficiente
 No porque me lo pides, sino porque faltan frenos al quererte
             
 Eres un regalo...
-y por eso me da miedo perderte, porque llegaste sin esperarlo, y te quedaste en mi vida, como si hubieras estado siempre, sigo atónito pensando en qué le viste a este corazón especial, para querer quedarte a su lado, pero doy gracias al camino, que sin ser planeado, comenzamos a trazar...
+y por eso me da miedo perderte, porque llegaste sin esperarlo, y te quedaste en mi vida, como si hubieras estado siempre.
 
 Eres vida...
 Eres luz en la oscuridad...
 Eres una persona que me hace querer mejorar...
 
-Para ti...
-que mereces lo mejor que tengo para dar
+Para ti... que mereces lo mejor que tengo para dar.
 
-Y para mí...
-porque me enseñas a quererme más...
+Y para mí... porque me enseñas a quererme más...
 
 Eres inspiración...
 Eres felicidad...
@@ -147,25 +138,16 @@ Y el refugio donde mi alma descansa.
 
 Tenerte a mi lado es el tesoro más grande que la vida me ha dado.
 
-Sé que hemos hablado de esto y que quizás no siempre estemos de acuerdo en todo, pero quiero que sepas que respeto tu esencia y tu libertad. Este regalo es mi forma de decir que, aunque tengamos nuestras diferencias, confío en nosotros y en la persona maravillosa que eres. Te quiero libre, te quiero auténtica y sobre todo.
-Te quiero Conmigo.
+Sé que hemos hablado de esto y que quizás no siempre estemos de acuerdo en todo, pero quiero que sepas que respeto tu esencia y tu libertad. Confío en nosotros y en la persona maravillosa que eres. Te quiero libre, te quiero auténtica y sobre todo... Te quiero Conmigo.
 
-Gracias por elegirme, por abrazar mis miedos y convertirlos en valentía. No sé qué nos depara el destino, pero mientras sea a tu lado, sé que cualquier lugar es correcto. Cada aventura será especial. Eres y serás siempre, mi lugar favorito en el mundo.
+Gracias por elegirme, por abrazar mis miedos y convertirlos en valentía. No sé qué nos depara el destino, pero mientras sea a tu lado, sé que cualquier lugar es correcto.
 
 Te amo mucho mi princesa.`;
 
         const images = [
-            'nuestra_foto.jpg',
-            'Foto1.jpg',
-            'Foto2.jpg',
-            'Foto3.jpg',
-            'Foto4.jpg',
-            'Foto5.jpg',
-            'Foto6.jpg',
-            'Foto7.jpg',
-            'Foto8.jpg',
-            'Foto9.jpg',
-            'Foto10.jpg'
+            'nuestra_foto.jpg', 'Foto1.jpg', 'Foto2.jpg', 'Foto3.jpg', 
+            'Foto4.jpg', 'Foto5.jpg', 'Foto6.jpg', 'Foto7.jpg', 
+            'Foto8.jpg', 'Foto9.jpg', 'Foto10.jpg'
         ];
         
         let currentImageIndex = 0;
@@ -205,7 +187,6 @@ Te amo mucho mi princesa.`;
             
             changeBackground();
             setInterval(changeBackground, 4000);
-            
             setInterval(createParticle, 400);
             typeWriter();
         }
